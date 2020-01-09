@@ -1,4 +1,4 @@
-require "readline-ext"
+require "pryline"
 class PryKeybind
   class << self
     attr_accessor :registry

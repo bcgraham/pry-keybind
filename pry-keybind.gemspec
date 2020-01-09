@@ -20,6 +20,6 @@ Gem::Specification.new do |gem|
   # Dependencies
   gem.required_ruby_version = ">= 2.3.0"
 
-  gem.add_runtime_dependency "readline-ext", ">= 0.0.1"
+  gem.add_runtime_dependency "pryline", ">= 0.0.1"
   gem.add_runtime_dependency "pry", "~> 0.10"
 end
