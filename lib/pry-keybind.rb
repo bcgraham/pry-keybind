@@ -1,4 +1,6 @@
 require "pryline"
+require "pry_ext"
+require "hooks"
 class PryKeybind
   class << self
     attr_accessor :registry
@@ -16,6 +18,10 @@ class PryKeybind
     self.registry[constant] = new(key, options, &block)
   end
 
+  def self.register_anonymous(key, options = {}, &block)
+    constant = format("BINDING_%09d", Random.random_number(1_000_000_000)).to_sym
+    register(constant, key, options, &block)
+  end
 
   def self.bind_all!(pry, source: nil)
     # puts "binding / layer size?: #{layers.size} / source: #{source}"
