@@ -5,6 +5,7 @@ class PryKeybind
   class << self
     attr_accessor :registry
     attr_accessor :layers
+    attr_accessor :bound
   end
 
   attr_accessor :pry_instance
@@ -24,6 +25,7 @@ class PryKeybind
   end
 
   def self.bind_all!(pry, source: nil)
+    @bound = true
     # puts "binding / layer size?: #{layers.size} / source: #{source}"
     layers << [*registry.values].map do |key_binding|
       key_binding.pry_instance = pry
@@ -34,6 +36,7 @@ class PryKeybind
   def self.unbind_all!(pry_instance, source: nil)
     # puts "unbinding / layer size?: #{layers.size} / source: #{source}"
     return unless layer = layers.pop
+    @bound = false
 
     layer.each do |key_binding|
       key_binding.pry_instance = pry_instance

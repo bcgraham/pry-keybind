@@ -18,8 +18,8 @@ Gem::Specification.new do |gem|
   gem.executables = []
 
   # Dependencies
-  gem.required_ruby_version = ">= 2.3.0"
+  gem.required_ruby_version = ">= 2.7.0"
 
-  gem.add_runtime_dependency "pryline", ">= 0.0.3"
-  gem.add_runtime_dependency "pry", "~> 0.10"
+  gem.add_runtime_dependency "pryline", ">= 0.0.5"
+  gem.add_runtime_dependency "pry", "~> 0.14"
 end
