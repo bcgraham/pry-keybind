@@ -104,8 +104,7 @@ class PryKeybind
   end
 
   def block_caller
-    @block_caller ||= Proc.new do
-      # puts "\npry keybind 99 keybindings accepting line\n"
+    @block_caller ||= Proc.new do |*args|
       if save_input?
         Pry.config.input_states << InputState.save!(pry_instance)
       end
@@ -121,9 +120,10 @@ class PryKeybind
         Pryline.insert_text input.chomp
       end
 
-      @block.call(pry_instance)
+      @block.call(pry_instance, args[0], args[1])
 
       Pryline.refresh_line if refresh_line?
+      next 0
     end
   end
 
